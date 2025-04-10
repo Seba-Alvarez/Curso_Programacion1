@@ -8,7 +8,7 @@ se suma el número actual a la variable
 se imprime por pantalla el resultado
 """
 
-"""
+
 #se define la variable como 0, para que no sume ni reste a la hora de hacer la suma de números
 variable_1 = 0
 #se piden los números
@@ -25,7 +25,7 @@ for i in range(1, variable_2+1):
 #se imprime por consola con un f-string
 print(f"La suma de los primeros {variable_2} números naturales es {variable_1}")
 
-"""
+
 
 
 
