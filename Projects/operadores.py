@@ -59,7 +59,7 @@ def par_bien_p(expr):
 #region Ordenar tupla
 #esto es para ordenar el diccionario de forma descendente
 #para poder evitar, por ejemplo, que en "si y solo si" remplace solo el primer separado en lugar de toda la expresión
-#use una tupla para que este siempre ordenada y no se pueda cambiar, dejando los remplazos fijos
+#use una tupla para que este siempre ordenada y no se pueda cambiar, dejando los reemplazos fijos
 #esto le quita mantenibilidad al código, pero es un proyecto personal educativo, no para una empresa
 def ordenar(tupla):
     #ordena la tupla de mayor a menor
@@ -68,8 +68,8 @@ def ordenar(tupla):
     return -len(tupla[0])
 #endregion
 
-#region Diccionario con remplazos
-#diccionario con todos los remplazos para que python interprete "no" o "¬" como not
+#region Diccionario con reemplazos
+#diccionario con todos los reemplazos para que python interprete "no" o "¬" como not
 remp = {
     "no": "not", "negacion": "not",
     "y": "and", "disyuncion": "and",
@@ -104,7 +104,7 @@ for i in range(pq):
 
     print("ingresar proposición:")
     #este nom es para usar la función def_val
-    #el strip es para que quede en minuscula
+    #el strip es para que quede en minúscula
     nom = input().strip()
     print(f"valor de {nom}:")
     #se agrega la v.a al diccionario usando la función para verificar que sea adecuada
@@ -159,7 +159,7 @@ exp = re.sub(r'(.+?)\s*(si y solo si|bicondicional|doble implicación)\s*(.+)', 
 
 #endregion
 
-#region Verificar proposicion
+#region Verificar proposición
 
 #verificar si tiene bien puestos los paréntesis y si es verdadero o falso
 
@@ -167,7 +167,7 @@ exp = re.sub(r'(.+?)\s*(si y solo si|bicondicional|doble implicación)\s*(.+)', 
 #ESTA LÍNEA FUE UNA DE LAS DOS LÍNEAS MAS UTILES DE EL PROGRAMA
 print(f"Proposición procesada: {exp}") 
 
-#si no está bien balnceado, esto se verifica en la función
+#si no está bien balanceado, esto se verifica en la función
 if not par_bien_p(exp):
     print("paréntesis mal puestos")
 else:
