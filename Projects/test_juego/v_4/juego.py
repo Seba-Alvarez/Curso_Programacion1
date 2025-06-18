@@ -2,6 +2,7 @@
 import pygame
 import random
 import sys
+#esto es un modulo para interactuar con el sistema operativo (para obtener direcciones y no tener que escribir a mano)
 import os
 
 #directorio para cargar las imagenes
