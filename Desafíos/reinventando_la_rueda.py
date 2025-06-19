@@ -1,6 +1,6 @@
 #reinventando_la_rueda.py
 
-def suma (lista):
+def suma(lista):
     #caso base, lista vacia
     if not lista:
         #para que la función termine
@@ -15,7 +15,7 @@ def suma (lista):
         #luego va a ser 6 + 0 (porque la lista va a quedar vacia y va a ir al caso base y termina la función)
         return lista[0] + suma(lista[1:])
 
-def contar (lista):
+def contar(lista):
         #caso base, lista vacia
     if not lista:
         #para que la función termine
@@ -48,10 +48,10 @@ def titulo(texto, indice = 0):
     #esta función no contempla el uso de signos como ¿? o !¡
     if indice == 0 or texto[indice - 1] == " ":
         #se convierte el caracter a mayuscula
-        car_actual.upper()
+        car_actual = car_actual.upper()
     #si no, se pasa a minuscula
     else:
-        car_actual.lower()
+        car_actual = car_actual.lower()
 
     #para que la función siga hasta llegar al caso base
     #por eso se le suma 1 al indice, para que siga avanzando
