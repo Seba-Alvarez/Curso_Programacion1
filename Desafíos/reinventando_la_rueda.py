@@ -58,11 +58,33 @@ def titulo(texto, indice = 0):
     return car_actual + titulo(texto, indice + 1)
 
 
-def mcd():
-    pass
+def mcd(numero_1, numero_2):
+    #caso base para terminar la función
+    #si el numero 2 es 0, significa que el resto de la operación anterior es 0
+    #entonces numero_1 es el número que divide a numero_2 (el anterior) y si mismo
+    if numero_2 == 0:
+        #se retorna el ultimo número que es el que en la vuelta anterior era numero_2
+        return numero_1
+    else:
+        #segun euclides: El MCD de dos números a y b es el mismo que el MCD de b y el resto de a dividido por b.
+        #ni idea la verdad, le pedi ayuda a chatgpt con esta en concreto porque esto me resulta complicado
+        #pero en referencia al código, numero_2 esta aca para llegar al caso base
+        #numero_1 % numero_2 se fija el resto de la división para saber si es 0
+        return mcd(numero_2, numero_1 % numero_2)
 
-def remplazar():
-    pass
-
-def es_primo():
-    pass
+#como aparentemente 0 y 1 no son primos, para el caso base use 2 en vez de 0
+def es_primo(numero, divisor = 2):
+    #para manejar el 0 y el 1
+    if numero < 2:
+        return False
+    #el codigo es simple, pero ni idea del porque pasa, entiendo el código, mas no el concepto matemático
+    if divisor * divisor > numero:
+        #aparentemente si el resultado de la multiplicacion de dos divisores es mayor que el número
+        #ese número es primo
+        return True
+    #al parecer no pueden haber números divisores, entonces si algún número es divisible no es primo
+    if numero % divisor == 0:
+        return False
+    #aca avanza la función
+    #supongo que divisor + 1 es para contemplar todos los números desde el 2 hasta el infinito y mas allá
+    return es_primo(numero, divisor + 1)
