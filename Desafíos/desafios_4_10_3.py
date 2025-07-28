@@ -12,16 +12,6 @@ class Producto:
 
     def __str__(self):
         return f"Producto {self.nombre}, Precio {self.precio}, Cantidad {self.cantidad}"
-    
-
-"""class Empleados:
-    def __init__(self, nombre, edad, cargo):
-        self.nombre = nombre
-        self.edad = edad
-        self.cargo = cargo
-
-    def __str__(self):
-        return f"Nombre {self.nombre}, Edad {self.edad}, Cargo {self.cargo}"""
 
 class Catalogo:
     def __init__(self):
