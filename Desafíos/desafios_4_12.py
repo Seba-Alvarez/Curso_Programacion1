@@ -129,3 +129,82 @@ class GestionLibro:
                 return libro
         print(f"No se encontro el libro {titulo}")
         return None
+    
+#el menu este se lo pedi a chatgpt usando de base uno que hice hace un tiempo, no queria escribirlo otra vez a mano jaja
+
+def menu_autores_libros():
+    gestion_libros = GestionLibro()  # Incluye internamente una instancia de GestionAutores
+    gestion_autores = gestion_libros.gestion_autores  # Acceso directo a autores
+
+    while True:
+        print("\n--- MENÚ GESTIÓN AUTORES Y LIBROS ---")
+        print("1. Alta Autor")
+        print("2. Baja Autor")
+        print("3. Mostrar Autores")
+        print("4. Buscar Autor")
+        print("5. Alta Libro")
+        print("6. Baja Libro")
+        print("7. Mostrar Libros")
+        print("8. Buscar Libro")
+        print("9. Salir")
+
+        opcion = input("Seleccione una opción (1-9): ")
+
+        if opcion == "1":
+            print("\n-- Alta de Autor --")
+            nombre = input("Nombre del autor: ")
+            fecha_nac = input("Fecha de nacimiento: ")
+            nacionalidad = input("Nacionalidad: ")
+            gestion_autores.alta_autor(nombre, fecha_nac, nacionalidad)
+
+        elif opcion == "2":
+            print("\n-- Baja de Autor --")
+            nombre = input("Nombre del autor a eliminar: ")
+            autor = gestion_autores.buscar_autor(nombre)
+            if autor:
+                gestion_autores.baja_autor(autor)
+
+        elif opcion == "3":
+            print("\n-- Mostrar Autores --")
+            gestion_autores.mostrar_autores()
+
+        elif opcion == "4":
+            print("\n-- Buscar Autor --")
+            nombre = input("Nombre del autor a buscar: ")
+            gestion_autores.buscar_autor(nombre)
+
+        elif opcion == "5":
+            print("\n-- Alta de Libro --")
+            nombre_autor = input("Nombre del autor del libro: ")
+            autor = gestion_autores.buscar_autor(nombre_autor)
+            if autor:
+                titulo = input("Título del libro: ")
+                genero = input("Género: ")
+                isbn = input("ISBN: ")
+                gestion_libros.alta_libro(autor, titulo, genero, isbn)
+
+        elif opcion == "6":
+            print("\n-- Baja de Libro --")
+            titulo = input("Título del libro a eliminar: ")
+            libro = gestion_libros.buscar_libro(titulo)
+            if libro:
+                gestion_libros.baja_libro(libro)
+
+        elif opcion == "7":
+            print("\n-- Mostrar Libros --")
+            gestion_libros.mostrar_libros()
+
+        elif opcion == "8":
+            print("\n-- Buscar Libro --")
+            titulo = input("Título del libro a buscar: ")
+            gestion_libros.buscar_libro(titulo)
+
+        elif opcion == "9":
+            print("Saliendo del sistema...")
+            break
+
+        else:
+            print("Opción inválida. Ingrese un número del 1 al 9.")
+
+if __name__ == "__main__":
+    menu_autores_libros()
