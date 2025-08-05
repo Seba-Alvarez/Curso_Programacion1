@@ -181,64 +181,100 @@ class EscritorAcademico(Escritor, Academico):
 # donde Gerente y Tecnico hereden de Empleado, y algunos puedan tener roles adicionales 
 # mediante composición con otras clases como Administrador o Mantenimiento.
 
+#clase padre, empleado
 class Empleado:
+    #constructor con los atributos de la clase
     def __init__(self, nombre, id_empleado):
         self.nombre = nombre
         self.id_empleado = id_empleado
 
+    #metodo para mostrar empleados
     def trabajar(self):
-        print(f"{self.nombre} está trabajando como empleado.")
+        print(f"{self.nombre} esta trabajando como empleado.")
 
+#gerente es una clase hija de empleado, es decir, un gerente es un tipo de empleado
 class Gerente(Empleado):
+    #se agregan los atributos de la clase padre al constructor
     def __init__(self, nombre, id_empleado, departamento):
+        #con super se toman los atributos (en este caso) de la clase padre (empleado)
         super().__init__(nombre, id_empleado)
+        #se agrega un nuevo atributo a la clase
         self.departamento = departamento
 
+    #metodo para mostrar gerentes
     def dirigir(self):
         print(f"{self.nombre} está dirigiendo el departamento de {self.departamento}.")
 
+#tecnico, otro tipo de empleado (clase hijo de empleado)
 class Tecnico(Empleado):
+    #igual que gerente pero con el atributo de tecnico en lugar del de gerente
     def __init__(self, nombre, id_empleado, especialidad):
+        #igual que en gerente, estan heredando de la misma clase.
         super().__init__(nombre, id_empleado)
         self.especialidad = especialidad
 
+    #metodo para mostrar los tecnicos
     def reparar(self):
         print(f"{self.nombre} está reparando equipos de {self.especialidad}.")
 
+#voluntarios no heredan nada de empleados, es decir, no son un tipo de empleados
 class Voluntario:
+    #constructor con los datos de los voluntarios
     def __init__(self, nombre, area_asignada):
+        #clase normal
         self.nombre = nombre
         self.area_asignada = area_asignada
 
+    #metodo para mostrar los empleados
     def ayudar(self):
         print(f"{self.nombre} está ayudando en el área de {self.area_asignada} como voluntario.")
 
+#esta clase tampoco es un tipo de empleado
 class Administrador:
+    #constructor normal
     def __init__(self, nivel_admin):
+        #atributos de la clase
         self.nivel_admin = nivel_admin
 
+    #metodo para mostrar
     def administrar(self):
         print(f"Administrando con nivel {self.nivel_admin}.")
 
+#clase normal
 class Mantenimiento:
     def __init__(self, herramientas):
         self.herramientas = herramientas
 
+    #metodo para mostrar igual que los demas, use un join para quitar las comas de del string
+    #se sabe que es un string porque se esta formateando en un f-string
     def mantener(self):
         print(f"Mantenimiento usando herramientas: {', '.join(self.herramientas)}.")
 
+#clase que esta heredando de gerente (por consiguiente de empleado), para seguir con la metafora un
+#gerente administrador es un tipo de empleado
 class GerenteAdministrador(Gerente):
+    #construcctor con los atributos de las clases padre
     def __init__(self, nombre, id_empleado, departamento, nivel_admin):
+        #aca se estan tomando los atributos de las clases padre
         super().__init__(nombre, id_empleado, departamento)
+        #esto se llama composicion, se le esta agregando un comportamiento extra
+        #no esta heredando de administrador, pero esta tomando un objeto de la clase administrador
         self.administrador = Administrador(nivel_admin)
 
+    #este es el comportamiento, se instancia la clase administrador y se llama al metodo administrar de esa clase
     def administrar(self):
         self.administrador.administrar()
 
+#clase que esta heredando de tecnico (por consiguiente de empleado), para seguir con la metafora un
+#tecnico es un tipo de empleado
 class TecnicoMantenimiento(Tecnico):
+    #constructor con los atributos de las clases padre
     def __init__(self, nombre, id_empleado, especialidad, herramientas):
+        #igual que arriba pero con tecnico en lugar de gerente
         super().__init__(nombre, id_empleado, especialidad)
+        #igual que arriba se esta tomando un objeto de la clase mantenimiento
         self.mantenimiento = Mantenimiento(herramientas)
 
+    #comportamiento instanciado de mantenimiento, igual que arriba
     def mantener(self):
         self.mantenimiento.mantener()
