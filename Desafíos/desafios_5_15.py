@@ -4,23 +4,6 @@
 # El programa debe imprimir un mensaje claro con el número mayor o indicar si todos los números son iguales.
 # Desafío extra
 
-#se piden los números
-a = int(input("Ingrese el primer número: "))
-b = int(input("Ingrese el segundo número: "))
-c = int(input("Ingrese el tercer número: "))
-
-#si son los 3 iguales
-if a == b == c:
-    print("Todos los números son iguales.")
-#si dos de ellos son iguales
-elif a==b or a==c or b==c:
-    print("dos de los números ingresados son iguales")
-else:
-    #se busca el mayor con max
-    mayor = max(a, b, c)
-    #se imprime el mayor por pantalla
-    print(f"El número mayor es: {mayor}")
-
 #Desafío 72: 
 #Un sistema de inventario tiene una lista con los códigos de productos. 
 # Desarrolla un programa que permita al usuario introducir un código de producto y que determine 
