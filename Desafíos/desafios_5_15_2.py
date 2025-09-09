@@ -109,50 +109,86 @@ print(f"El valor máximo en el árbol es: {max_valor}")
 #https://www.w3schools.com/dsa/dsa_data_binarysearchtrees.php
 #por eso deje los nombres en ingles, lo que agregue yo esta en español
 
-#
+#Se crea la clase para hacer el nodo
 class TreeNode:
+    #constructor con el valor del nodo
     def __init__(self, data):
         self.data = data
+        #se define los nodos de la izquierda y derecha como none
         self.left = None
         self.right = None
 
+#funcion para insertar los nodos, hay que pasarle un nodo
+#y el valor que tiene el nodo andentro
 def insert(node, data):
+    #caso base para llegar a todos los caminos del arbol y para que
+    #salga del bucle cuando no haya mas nodos vacios
+    #si el nodo no tiene nada
     if node is None:
+        #se devuelve el valor, instanciando la clase TreeNode
         return TreeNode(data)
+    #si el valor dentro del nodo es menor al de la clase
     if data < node.data:
+        #se guarda el valor en el nodo izquierdo
         node.left = insert(node.left, data)
+    #si el valor dentro del nodo es mayor al de la calse
     elif data > node.data:
+        #se guarda en el nodo derecho
         node.right = insert(node.right, data)
+    #esto es por la forma en la que los valores de los nodos se
+    #distribuyen, los valores mas chicos van a la izquierda, mientras
+    #que los mas grandes van a la derecha
+
     return node
 
+#aca se busca el nodo, hay que pasarle un nodo y el valor que se esta buscando
 def search(node, target):
+    #caso base
     if node is None:
         return False
+     #si el valor dentro del nodo es igual al valor buscado, ya lo encontro y sale de
+     #la funcion con el return
     if node.data == target:
         return True
+    #ademas, si el nodo que se le pasa por parametro es menor que el del nodo de la clase
+    #busca por la izquierda del arbol, porque se ubican los valores menores de ese lado
     elif target < node.data:
         return search(node.left, target)
     else:
+        #si no es menor, busca por la derecha
         return search(node.right, target)
 
+#aca se recorre el arbol
 def inOrderTraversal(node):
+    #caso base
     if node is None:
         return
+    #recorrido inorder recursivo
+    #es decir, busca en este orden por subarboles izquierda->raiz->derecha
     inOrderTraversal(node.left)
     print(node.data, end=", ")
     inOrderTraversal(node.right)
 
-
+#lista con los numeros
 numeros = [13, 7, 15, 3, 8, 14, 19, 18]  
+#raiz vacia para arrancar con la función, esto es porque tiene que empezar por ahi
 root = None
 for num in numeros:
+    #no hay que armar el arbol a mano porque se estan insertando todos los valores
+    #dentro de este for
     root = insert(root, num)
 
-print("Recorrido in-order del ABB:")
+#se muestra el recorrido del arbol
+print("Recorrido inorder:")
+#se llama a la función (que ya tiene return)
 inOrderTraversal(root)
 print("\n")
 
+#el "target", o, el numero que se quiere encontrar
 numero_buscado = 14
+#pequeño manejo de excepciones
+#para notificar al usuario si se encontro el nodo
+#se le pasa la raiz para que arranque desde el incio
 if search(root, numero_buscado):
     print(f"El número {numero_buscado} SÍ existe en el árbol.")
 else:
