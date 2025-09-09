@@ -17,14 +17,16 @@ class Nodo:
 
 #función para recorrer el arbol, se le pasa un nodo como parametro
 def recorrido_preorden(nodo):
-    #si existe un nodo
+    #caso base, si existe un nodo
     if nodo:
+        #se van tomando sub arboles para hacer el recorrido
         #se imprime el valor del nodo instanciandolo de la calse
         print(nodo.valor)
         #se llama a la función de forma recursiva pero con los nodos
         #de la izquierda y la derecha
         recorrido_preorden(nodo.izquierda)
         recorrido_preorden(nodo.derecha)
+        #asi se hace el recorrido preorden, raiz -> izquierda -> derecha
 
 #se define la raiz, el incio del arbol
 raiz = Nodo(1)
@@ -62,6 +64,7 @@ def suma_inorden(nodo):
     #arranca por el de mas a la izquierda y va subiendo
     #encuentra el nodo mas a la izquierda por la recursion
     return suma_inorden(nodo.izquierda) + nodo.valor + suma_inorden(nodo.derecha)
+    #dicho de otra forma, el recorrido es izquierda->raiz->derecha
 
 #hay que pasarle la raiz para que empiece del principio
 resultado = suma_inorden(raiz)
@@ -86,8 +89,9 @@ def max_postorden(nodo):
     max_der = max_postorden(nodo.derecha)
     #aca se obtiene el mayor numero de los dos
     #se le pasa el valor del nodo actual y los maximos guardados 
-    # las variables
+    # en las variables
     return max(nodo.valor, max_izq, max_der)
+    #el recorrido postorden es izuierda->derecha->raiz
 
 #se le pasa la raiz a la función
 max_valor = max_postorden(raiz)
@@ -100,6 +104,60 @@ print(f"El valor máximo en el árbol es: {max_valor}")
 # izquierdo de cada nodo contenga solo nodos con valores menores, y el subárbol derecho 
 # solo nodos con valores mayores. Una vez construido el árbol, implementa una función 
 # para buscar un número dado y devuelva si ese número existe en el árbol o no.
+
+#la mayoria del codigo lo saque de aca:
+#https://www.w3schools.com/dsa/dsa_data_binarysearchtrees.php
+#por eso deje los nombres en ingles, lo que agregue yo esta en español
+
+#
+class TreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(node, data):
+    if node is None:
+        return TreeNode(data)
+    if data < node.data:
+        node.left = insert(node.left, data)
+    elif data > node.data:
+        node.right = insert(node.right, data)
+    return node
+
+def search(node, target):
+    if node is None:
+        return False
+    if node.data == target:
+        return True
+    elif target < node.data:
+        return search(node.left, target)
+    else:
+        return search(node.right, target)
+
+def inOrderTraversal(node):
+    if node is None:
+        return
+    inOrderTraversal(node.left)
+    print(node.data, end=", ")
+    inOrderTraversal(node.right)
+
+
+numeros = [13, 7, 15, 3, 8, 14, 19, 18]  
+root = None
+for num in numeros:
+    root = insert(root, num)
+
+print("Recorrido in-order del ABB:")
+inOrderTraversal(root)
+print("\n")
+
+numero_buscado = 14
+if search(root, numero_buscado):
+    print(f"El número {numero_buscado} SÍ existe en el árbol.")
+else:
+    print(f"El número {numero_buscado} NO existe en el árbol.")
+
 
 # Desafío 80:
 # Construir y evaluar un árbol de expresiones para una expresión matemática dada.
