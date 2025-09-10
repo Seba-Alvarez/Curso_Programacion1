@@ -193,18 +193,3 @@ if search(root, numero_buscado):
     print(f"El número {numero_buscado} SÍ existe en el árbol.")
 else:
     print(f"El número {numero_buscado} NO existe en el árbol.")
-
-
-# Desafío 80:
-# Construir y evaluar un árbol de expresiones para una expresión matemática dada.
-#Tu tarea es escribir un programa en Python que haga lo siguiente:
-
-#Construir el Árbol de Expresiones: Dada una expresión matemática en forma de cadena, 
-# construir el árbol de expresiones correspondiente. Puedes asumir que la expresión está 
-# bien formada y solo contiene números enteros, y los operadores +, -, *, /.
-
-#Evaluar el Árbol de Expresiones: Una vez construido el árbol, 
-# evaluarlo y devolver el resultado de la expresión.
-
-#Prueba tu Programa: Utiliza la expresión "5 + 3 * 4" para probar tu programa. 
-# El resultado debería ser 17.
